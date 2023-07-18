@@ -136,6 +136,14 @@
       <child link="${arm_id}_link8"/>
     </joint>
 
+    <link name="${arm_id}_ee"/>
+
+    <joint name="${arm_id}_ee" type="fixed">
+      <origin rpy="0 0 ${-pi/4}" xyz="0 0 0.2104"/>
+      <parent link="${arm_id}_link7"/>
+      <child link="${arm_id}_ee"/>
+    </joint>
+
     <!-- Collision sensors on all links. This is not present on the real robot, it is used only in simulation to detect collisions. -->
 
     <gazebo reference="${arm_id}_link1">
@@ -235,33 +243,5 @@
           </plugin>
       </sensor>
     </gazebo>
-
-    <gazebo reference="${arm_id}_leftfinger">
-      <sensor name='${arm_id}_leftfinger_contact' type='contact'>
-        <update_rate> 50 </update_rate>
-        <always_on>true</always_on>
-          <contact>
-              <collision>${arm_id}_leftfinger_collision</collision>
-          </contact>
-          <plugin name="leftfinger_bumper" filename="libgazebo_ros_bumper.so">
-            <bumperTopicName>${arm_id}_leftfinger_collision</bumperTopicName>
-            <frameName>${arm_id}_leftfinger</frameName>
-          </plugin>
-      </sensor>
-    </gazebo>
-
-    <gazebo reference="${arm_id}_rightfinger">
-        <sensor name='${arm_id}_rightfinger_contact' type='contact'>
-          <update_rate> 50 </update_rate>
-          <always_on>true</always_on>
-            <contact>
-                <collision>${arm_id}_rightfinger_collision</collision>
-            </contact>
-            <plugin name="rightfinger_bumper" filename="libgazebo_ros_bumper.so">
-              <bumperTopicName>${arm_id}_rightfinger_collision</bumperTopicName>
-              <frameName>${arm_id}_rightfinger</frameName>
-            </plugin>
-        </sensor>
-      </gazebo>
   </xacro:macro>
 </robot>
