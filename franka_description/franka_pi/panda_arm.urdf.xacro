@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda">
+
+  <!-- Name of this panda -->
+  <xacro:arg name="arm_id" default="panda" />
+  <!-- Should a franka_gripper be mounted at the flange?" -->
+  <xacro:arg name="hand" default="false" />
+  <!-- Is the robot being simulated in gazebo?" -->
+  <xacro:arg name="gazebo" default="false" />
+
+  <xacro:unless value="$(arg gazebo)">
+    <!-- Create a URDF for a real hardware -->
+    <xacro:include filename="$(find franka_description)/franka_pi/panda_arm.xacro" />
+    <xacro:panda_arm arm_id="panda" safety_distance="0.03"/>
+
+    <xacro:if value="$(arg hand)">
+      <xacro:include filename="$(find franka_description)/franka_pi/hand.xacro"/>
+      <xacro:hand ns="panda" rpy="0 0 ${-pi/4}" connected_to="panda_link8" safety_distance="0.03"/>
+    </xacro:if>
+  </xacro:unless>
+
+  <xacro:if value="$(arg gazebo)">
+
+    <xacro:arg name="xyz" default="0 0 0" />
+    <xacro:arg name="rpy" default="0 0 0" />
+
+    <!-- Create a simulatable URDF -->
+    <xacro:include filename="$(find franka_description)/franka_pi/utils.xacro" />
+    <xacro:include filename="$(find franka_description)/franka_pi/panda_gazebo.xacro"/>
+
+    <xacro:panda_arm arm_id="panda" />
+
+    <xacro:if value="$(arg hand)">
+      <xacro:hand ns="panda" rpy="0 0 ${-pi/4}" connected_to="panda_link8" />
+      <xacro:gazebo-joint joint="panda_finger_joint1" transmission="hardware_interface/EffortJointInterface" />
+      <xacro:gazebo-joint joint="panda_finger_joint2" transmission="hardware_interface/EffortJointInterface" />
+    </xacro:if>
+
+    <!-- Gazebo requires a joint to a link called "world" for statically mounted robots -->
+    <link name="world" />
+    <joint name="world_joint" type="fixed">
+      <origin xyz="$(arg xyz)" rpy="$(arg rpy)" />
+      <parent link="world" />
+      <child  link="panda_link0" />
+    </joint>
+
+
+    <xacro:gazebo-joint joint="panda_joint1" transmission="hardware_interface/EffortJointInterface" />
+    <xacro:gazebo-joint joint="panda_joint2" transmission="hardware_interface/EffortJointInterface" />
+    <xacro:gazebo-joint joint="panda_joint3" transmission="hardware_interface/EffortJointInterface" />
+    <xacro:gazebo-joint joint="panda_joint4" transmission="hardware_interface/EffortJointInterface" />
+    <xacro:gazebo-joint joint="panda_joint5" transmission="hardware_interface/EffortJointInterface" />
+    <xacro:gazebo-joint joint="panda_joint6" transmission="hardware_interface/EffortJointInterface" />
+    <xacro:gazebo-joint joint="panda_joint7" transmission="hardware_interface/EffortJointInterface" />
+
+    <xacro:transmission-franka-state arm_id="panda" />
+    <xacro:transmission-franka-model arm_id="panda"
+       root="panda_joint1"
+       tip="panda_joint8"
+     />
+
+    <gazebo reference="panda_link8">
+      <sensor name='panda_link8_contact' type='contact'>
+        <update_rate> 50 </update_rate>
+        <always_on>true</always_on>
+          <contact>
+            <collision>panda_link8_collision</collision>
+          </contact>
+          <plugin name="link8_bumper" filename="libgazebo_ros_bumper.so">
+            <bumperTopicName>panda_link8_collision</bumperTopicName>
+            <frameName>panda_link8</frameName>
+          </plugin>
+      </sensor>
+    </gazebo>
+
+    <gazebo reference="panda_leftfinger">
+      <sensor name='panda_leftfinger_contact' type='contact'>
+        <update_rate> 50 </update_rate>
+        <always_on>true</always_on>
+          <contact>
+            <collision>panda_leftfinger_collision</collision>
+          </contact>
+          <plugin name="leftfinger_bumper" filename="libgazebo_ros_bumper.so">
+            <bumperTopicName>panda_leftfinger_collision</bumperTopicName>
+            <frameName>panda_leftfinger</frameName>
+          </plugin>
+      </sensor>
+    </gazebo>
+
+    <gazebo reference="panda_rightfinger">
+      <sensor name='panda_rightfinger_contact' type='contact'>
+        <update_rate> 50 </update_rate>
+        <always_on>true</always_on>
+          <contact>
+            <collision>panda_rightfinger_collision</collision>
+          </contact>
+          <plugin name="rightfinger_bumper" filename="libgazebo_ros_bumper.so">
+            <bumperTopicName>panda_rightfinger_collision</bumperTopicName>
+            <frameName>panda_rightfinger</frameName>
+          </plugin>
+      </sensor>
+    </gazebo>
+
+    <gazebo>
+      <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <controlPeriod>0.001</controlPeriod>
+        <robotSimType>franka_gazebo/FrankaHWSim</robotSimType>
+      </plugin>
+      <self_collide>true</self_collide>
+    </gazebo>
+  </xacro:if>
+
+</robot>

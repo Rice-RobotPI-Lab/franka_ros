@@ -144,104 +144,103 @@
       <child link="${arm_id}_ee"/>
     </joint>
 
-    <!-- Collision sensors on all links. This is not present on the real robot, it is used only in simulation to detect collisions. -->
-
     <gazebo reference="${arm_id}_link1">
-      <sensor name='${arm_id}_link1_contact' type='contact'>
-        <update_rate> 50 </update_rate>
-        <always_on>true</always_on>
-          <contact>
+        <sensor name='${arm_id}_link1_contact' type='contact'>
+          <update_rate> 50 </update_rate>
+          <always_on>true</always_on>
+            <contact>
               <collision>${arm_id}_link1_collision</collision>
-          </contact>
-          <plugin name="link1_bumper" filename="libgazebo_ros_bumper.so">
-            <bumperTopicName>${arm_id}_link1_collision</bumperTopicName>
-            <frameName>${arm_id}_link1</frameName>
-          </plugin>
-      </sensor>
-    </gazebo>
+            </contact>
+            <plugin name="link1_bumper" filename="libgazebo_ros_bumper.so">
+              <bumperTopicName>${arm_id}_link1_collision</bumperTopicName>
+              <frameName>${arm_id}_link1</frameName>
+            </plugin>
+        </sensor>
+      </gazebo>
 
-    <gazebo reference="${arm_id}_link2">
-      <sensor name='${arm_id}_link2_contact' type='contact'>
-        <update_rate> 50 </update_rate>
-        <always_on>true</always_on>
-          <contact>
+      <gazebo reference="${arm_id}_link2">
+        <sensor name='${arm_id}_link2_contact' type='contact'>
+          <update_rate> 50 </update_rate>
+          <always_on>true</always_on>
+            <contact>
               <collision>${arm_id}_link2_collision</collision>
-          </contact>
-          <plugin name="link2_bumper" filename="libgazebo_ros_bumper.so">
-            <bumperTopicName>${arm_id}_link2_collision</bumperTopicName>
-            <frameName>${arm_id}_link2</frameName>
-          </plugin>
-      </sensor>
-    </gazebo>
+            </contact>
+            <plugin name="link2_bumper" filename="libgazebo_ros_bumper.so">
+              <bumperTopicName>${arm_id}_link2_collision</bumperTopicName>
+              <frameName>${arm_id}_link2</frameName>
+            </plugin>
+        </sensor>
+      </gazebo>
 
-    <gazebo reference="${arm_id}_link3">
-      <sensor name='${arm_id}_link3_contact' type='contact'>
-        <update_rate> 50 </update_rate>
-        <always_on>true</always_on>
-          <contact>
+      <gazebo reference="${arm_id}_link3">
+        <sensor name='${arm_id}_link3_contact' type='contact'>
+          <update_rate> 50 </update_rate>
+          <always_on>true</always_on>
+            <contact>
               <collision>${arm_id}_link3_collision</collision>
-          </contact>
-          <plugin name="link3_bumper" filename="libgazebo_ros_bumper.so">
-            <bumperTopicName>${arm_id}_link3_collision</bumperTopicName>
-            <frameName>${arm_id}_link3</frameName>
-          </plugin>
-      </sensor>
-    </gazebo>
+            </contact>
+            <plugin name="link3_bumper" filename="libgazebo_ros_bumper.so">
+              <bumperTopicName>${arm_id}_link3_collision</bumperTopicName>
+              <frameName>${arm_id}_link3</frameName>
+            </plugin>
+        </sensor>
+      </gazebo>
 
-    <gazebo reference="${arm_id}_link4">
-      <sensor name='${arm_id}_link4_contact' type='contact'>
-        <update_rate> 50 </update_rate>
-        <always_on>true</always_on>
-          <contact>
+      <gazebo reference="${arm_id}_link4">
+        <sensor name='${arm_id}_link4_contact' type='contact'>
+          <update_rate> 50 </update_rate>
+          <always_on>true</always_on>
+            <contact>
               <collision>${arm_id}_link4_collision</collision>
-          </contact>
-          <plugin name="link4_bumper" filename="libgazebo_ros_bumper.so">
-            <bumperTopicName>${arm_id}_link4_collision</bumperTopicName>
-            <frameName>${arm_id}_link4</frameName>
-          </plugin>
-      </sensor>
-    </gazebo>
+            </contact>
+            <plugin name="link4_bumper" filename="libgazebo_ros_bumper.so">
+              <bumperTopicName>${arm_id}_link4_collision</bumperTopicName>
+              <frameName>${arm_id}_link4</frameName>
+            </plugin>
+        </sensor>
+      </gazebo>
 
-    <gazebo reference="${arm_id}_link5">
-      <sensor name='${arm_id}_link5_contact' type='contact'>
-        <update_rate> 50 </update_rate>
-        <always_on>true</always_on>
-          <contact>
+      <gazebo reference="${arm_id}_link5">
+        <sensor name='${arm_id}_link5_contact' type='contact'>
+          <update_rate> 50 </update_rate>
+          <always_on>true</always_on>
+            <contact>
               <collision>${arm_id}_link5_collision</collision>
-          </contact>
-          <plugin name="link5_bumper" filename="libgazebo_ros_bumper.so">
-            <bumperTopicName>${arm_id}_link5_collision</bumperTopicName>
-            <frameName>${arm_id}_link5</frameName>
-          </plugin>
-      </sensor>
-    </gazebo>
+            </contact>
+            <plugin name="link5_bumper" filename="libgazebo_ros_bumper.so">
+              <bumperTopicName>${arm_id}_link5_collision</bumperTopicName>
+              <frameName>${arm_id}_link5</frameName>
+            </plugin>
+        </sensor>
+      </gazebo>
 
-    <gazebo reference="${arm_id}_link6">
-      <sensor name='${arm_id}_link6_contact' type='contact'>
-        <update_rate> 50 </update_rate>
-        <always_on>true</always_on>
-          <contact>
+      <gazebo reference="${arm_id}_link6">
+        <sensor name='${arm_id}_link6_contact' type='contact'>
+          <update_rate> 50 </update_rate>
+          <always_on>true</always_on>
+            <contact>
               <collision>${arm_id}_link6_collision</collision>
-          </contact>
-          <plugin name="link6_bumper" filename="libgazebo_ros_bumper.so">
-            <bumperTopicName>${arm_id}_link6_collision</bumperTopicName>
-            <frameName>${arm_id}_link6</frameName>
-          </plugin>
-      </sensor>
-    </gazebo> 
+            </contact>
+            <plugin name="link6_bumper" filename="libgazebo_ros_bumper.so">
+              <bumperTopicName>${arm_id}_link6_collision</bumperTopicName>
+              <frameName>${arm_id}_link6</frameName>
+            </plugin>
+        </sensor>
+      </gazebo> 
 
-    <gazebo reference="${arm_id}_link7">
-      <sensor name='${arm_id}_link7_contact' type='contact'>
-        <update_rate> 50 </update_rate>
-        <always_on>true</always_on>
-          <contact>
+      <gazebo reference="${arm_id}_link7">
+        <sensor name='${arm_id}_link7_contact' type='contact'>
+          <update_rate> 50 </update_rate>
+          <always_on>true</always_on>
+            <contact>
               <collision>${arm_id}_link7_collision</collision>
-          </contact>
-          <plugin name="link7_bumper" filename="libgazebo_ros_bumper.so">
-            <bumperTopicName>${arm_id}_link7_collision</bumperTopicName>
-            <frameName>${arm_id}_link7</frameName>
-          </plugin>
-      </sensor>
-    </gazebo>
+              <collision>${arm_id}_link7_fixed_joint_lump__panda_hand_collision_1</collision>
+            </contact>
+            <plugin name="link7_bumper" filename="libgazebo_ros_bumper.so">
+              <bumperTopicName>${arm_id}_link7_collision</bumperTopicName>
+              <frameName>${arm_id}_link7</frameName>
+            </plugin>
+        </sensor>
+      </gazebo>
   </xacro:macro>
 </robot>

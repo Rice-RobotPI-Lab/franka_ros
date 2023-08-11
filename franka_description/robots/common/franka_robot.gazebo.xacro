@@ -80,6 +80,28 @@
         </plugin>
         <self_collide>true</self_collide>
       </gazebo>
+
+      <!-- Collision sensors on all links. This is not present on the real robot, it is used only in simulation to detect collisions. -->
+
+      <!--  -->
+
+      <!-- <gazebo reference="${arm_id}_link8">
+        <sensor name='${arm_id}_link8_contact' type='contact'>
+          <update_rate> 50 </update_rate>
+          <always_on>true</always_on>
+            <contact>
+              <collision>${arm_id}_link8_collision</collision>
+            </contact>
+            <plugin name="link8_bumper" filename="libgazebo_ros_bumper.so">
+              <bumperTopicName>${arm_id}_link8_collision</bumperTopicName>
+              <frameName>${arm_id}_link8</frameName>
+            </plugin>
+        </sensor>
+      </gazebo> -->
+
+      
     </xacro:if>
+
+
   </xacro:macro>
 </robot>

@@ -119,32 +119,51 @@
       <dynamics damping="0.3" />
     </joint>
 
-    <gazebo reference="${arm_id}_leftfinger">
+    <!-- <gazebo reference="${arm_id}_hand">
       <sensor name='${arm_id}_leftfinger_contact' type='contact'>
         <update_rate> 50 </update_rate>
         <always_on>true</always_on>
           <contact>
-              <collision>${arm_id}_leftfinger_collision</collision>
+              <collision>${arm_id}_hand_collision</collision>
           </contact>
-          <plugin name="leftfinger_bumper" filename="libgazebo_ros_bumper.so">
-            <bumperTopicName>${arm_id}_leftfinger_collision</bumperTopicName>
-            <frameName>${arm_id}_leftfinger</frameName>
+          <plugin name="hand_bumper" filename="libgazebo_ros_bumper.so">
+            <bumperTopicName>${arm_id}_hand_collision</bumperTopicName>
+            <frameName>${arm_id}_hand</frameName>
           </plugin>
       </sensor>
-    </gazebo>
+    </gazebo> -->
+    <gazebo reference="${arm_id}_leftfinger">
+        <sensor name='${arm_id}_leftfinger_contact' type='contact'>
+          <update_rate> 50 </update_rate>
+          <always_on>true</always_on>
+            <contact>
+              <collision>${arm_id}_leftfinger_collision</collision>
+              <collision>${arm_id}_leftfinger_collision_1</collision>
+              <collision>${arm_id}_leftfinger_collision_2</collision>
+              <collision>${arm_id}_leftfinger_collision_3</collision>
+            </contact>
+            <plugin name="leftfinger_bumper" filename="libgazebo_ros_bumper.so">
+              <bumperTopicName>${arm_id}_leftfinger_collision</bumperTopicName>
+              <frameName>${arm_id}_leftfinger</frameName>
+            </plugin>
+        </sensor>
+      </gazebo>
 
-    <gazebo reference="${arm_id}_rightfinger">
+      <gazebo reference="${arm_id}_rightfinger">
         <sensor name='${arm_id}_rightfinger_contact' type='contact'>
           <update_rate> 50 </update_rate>
           <always_on>true</always_on>
             <contact>
-                <collision>${arm_id}_rightfinger_collision</collision>
+              <collision>${arm_id}_rightfinger_collision</collision>
+              <collision>${arm_id}_rightfinger_collision_1</collision>
+              <collision>${arm_id}_rightfinger_collision_2</collision>
+              <collision>${arm_id}_rightfinger_collision_3</collision>
             </contact>
             <plugin name="rightfinger_bumper" filename="libgazebo_ros_bumper.so">
               <bumperTopicName>${arm_id}_rightfinger_collision</bumperTopicName>
               <frameName>${arm_id}_rightfinger</frameName>
             </plugin>
         </sensor>
-    </gazebo>
+      </gazebo>
   </xacro:macro>
 </robot>
