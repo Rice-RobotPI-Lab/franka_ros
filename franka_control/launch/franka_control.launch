@@ -2,8 +2,9 @@
 <launch>
   <arg name="robot_ip" />
   <arg name="load_gripper" default="true" />
+  <arg name="description_path" default="panda_arm.urdf.xacro" />
 
-  <param name="robot_description" command="$(find xacro)/xacro $(find franka_description)/robots/panda_arm.urdf.xacro hand:=$(arg load_gripper)" />
+  <param name="robot_description" command="$(find xacro)/xacro $(find franka_description)/robots/$(arg description_path) hand:=$(arg load_gripper)" />
 
   <include file="$(find franka_gripper)/launch/franka_gripper.launch" if="$(arg load_gripper)">
     <arg name="robot_ip" value="$(arg robot_ip)" />
