@@ -172,8 +172,15 @@ bool FrankaHW::initParameters(ros::NodeHandle& root_nh, ros::NodeHandle& robot_h
                                       {20.0, 20.0, 20.0, 25.0, 25.0, 25.0});
   std::copy(thresholds.begin(), thresholds.end(),
             collision_config_.upper_force_thresholds_nominal.begin());
-
-  return true;
+  std::stringstream ss;
+  for(auto it =thresholds.begin();it!=thresholds.end();it++) { 
+    if(it != thresholds.begin()) { 
+      ss<<" ";
+    }
+    ss<< *it;
+  }
+  ROS_INFO("threshold %s", ss.str().c_str());
+  return true; 
 }
 
 void FrankaHW::connect() {
